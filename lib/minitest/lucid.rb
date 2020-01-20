@@ -157,12 +157,11 @@ EOT
       @toc_ul_ele.add_element(toc_link(id))
       @body_ele.add_element(section_header(3, id, 'Backtrace (Filtered)'))
       gem_dir_path = File.dirname(`gem which minitest`)
+      while backtrace.first.start_with?(gem_dir_path)
+        backtrace.shift
+      end
       while backtrace.last.start_with?(gem_dir_path)
         backtrace.pop
-      end
-      until backtrace.empty? do
-        line = backtrace.shift
-        break if line.match(/minitest_lucid\.rb/)
       end
       @body_ele.add_element(items_table('data', backtrace))
     end
