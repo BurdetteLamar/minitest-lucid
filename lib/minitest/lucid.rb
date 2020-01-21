@@ -9,11 +9,11 @@ module Minitest
 
   module Assertions
 
-    alias old_assert_equal assert_equal
+    alias minitest_assert_equal assert_equal
 
     def assert_equal(expected, actual, msg=nil)
       begin
-        old_assert_equal(expected, actual, msg)
+        minitest_assert_equal(expected, actual, msg)
       rescue Minitest::Assertion => x
         elucidation_class  = get_class(expected, actual)
         raise unless elucidation_class
@@ -39,7 +39,8 @@ EOT
       ELUCIDATABLE_CLASSES.each do |klass|
         next unless expected.kind_of?(klass)
         next unless actual.kind_of?(klass)
-        return Object.const_get("#{self.class.name}::Lucid#{klass.name}")
+        class_name = "Lucid#{klass.name}"
+        return Object.const_get(class_name)
       end
       nil
     end
