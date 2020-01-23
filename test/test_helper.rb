@@ -25,9 +25,9 @@ module TestHelper
       # Obfuscate file paths and line numbers in backtrace.
       text = File.read(temp_file_path)
       # Careful with the angle brackets.
-      text.gsub!(Regexp.new(Minitest::Assertions.home_dir_path), '&lt;HOME_DIR&gt;')
-      text.gsub!(Regexp.new(Minitest::Assertions.gem_dir_path), '&lt;GEM_DIR&gt;')
-      text.gsub!(/\.rb:\d+:in/, '.rb:&lt;LINE_NO&gt;:in')
+      Minitest::Assertions.gsub_git_dir!(text, '&lt;GIT_DIR&gt;')
+      Minitest::Assertions.gsub_gem_dir!(text, '&lt;GEM_DIR&gt;')
+      Minitest::Assertions.gsub_line_no!(text, '&lt;LINE_NO&gt;')
       File.write(act_file_path, text)
       exp_lines = File.readlines(exp_file_path)
       act_lines = File.readlines(act_file_path)

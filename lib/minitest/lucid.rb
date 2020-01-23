@@ -135,12 +135,24 @@ EOT
       td_ele.add_element(items_table('data', exception.backtrace))
     end
 
-    def self.home_dir_path
-      ENV['HOME'].gsub('\\', '/')
+    def self.git_dir_path
+      `git rev-parse --show-toplevel`.chomp
+    end
+
+    def self.gsub_git_dir!(text, s)
+      text.gsub!(Regexp.new(git_dir_path), s)
     end
 
     def self.gem_dir_path
       File.dirname(`gem which minitest`)
+    end
+
+    def self.gsub_gem_dir!(text, s)
+      text.gsub!(Regexp.new(gem_dir_path), s)
+    end
+
+    def self.gsub_line_no!(text, s)
+      text.gsub!(/\.rb:\d+:in/, '.rb:&lt;LINE_NO&gt;:in')
     end
 
     def self.elucidate_backtrace(exception)
