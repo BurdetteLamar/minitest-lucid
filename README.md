@@ -1,43 +1,193 @@
-# Minitest::Lucid
+# Minitest Lucid
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/minitest/lucid`. To experiment with that code, run `bin/console` for an interactive prompt.
+[![Gem](https://img.shields.io/gem/v/minitest-lucid.svg?style=flat)](http://rubygems.org/gems/minitest-lucid "View this project in Rubygems")
 
-TODO: Delete this and the text above, and describe your gem
+When you use gem ```minitest```, a failed assertion for a large or complex object can be difficult to understand.
 
-## Installation
+Using method ```make_my_diffs_pretty!``` (it's part of ```minitest```) can sometimes help, but sometimes not enough.
 
-Add this line to your application's Gemfile:
+Use gem ```minitest-lucid``` to get detailed elucidations for certain failures.
 
-```ruby
-gem 'minitest-lucid'
-```
+## Is This Overkill?
 
-And then execute:
+Yes!  (Until it isn't.)
 
-    $ bundle
+When you have a failed assertion:
 
-Or install it yourself as:
-
-    $ gem install minitest-lucid
+* How much information is enough?
+* More is better.
+* Too much is just about right!
 
 ## Usage
 
-TODO: Write usage instructions here
+To use ```minitest-lucid```, install the gem and then in your tests,
 
-## Development
+```ruby
+require 'minitest-lucid'
+```
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+instead of
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+```ruby
+require 'minitest/autorun'
+```
 
-## Contributing
+No other code change is required.
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/minitest-lucid. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+For example, change this test
 
-## License
+```ruby
+require 'minitest/autorun'
 
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+class MyTest < Minitest::Test
+  def test_foo
+    expected = {:a => 0, :b => 1}
+    actual = {}
+    assert_equal(expected, actual)
+  end
+end
+```
 
-## Code of Conduct
+to this
 
-Everyone interacting in the Minitest::Lucid project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/minitest-lucid/blob/master/CODE_OF_CONDUCT.md).
+```ruby
+require 'minitest-lucid'
+
+class MyTest < Minitest::Test
+  def test_foo
+    expected = {:a => 0, :b => 1}
+    actual = {}
+    assert_equal(expected, actual)
+  end
+end
+```
+
+See example outputs below.
+
+## Supported Classes
+
+For supported classes, method ```assert_equal``` gets elucidated handling.
+
+For other classes and assertion methods, the original assertion behaviors are unchanged.
+
+The supported classes:
+
+- [Set](#set)
+
+The examples below show:
+
+- The message from a normal failed assertion.
+- The message as modified by the use of ```make_my_diffs_pretty!``` (which is part of ```minitest``` itself).
+- The detailed elucidation from ```minitest-lucid```.
+
+### Set
+
+#### assert_equal
+
+Here are sets, expected and actual, to be compared.
+
+```data.rb```:
+```ruby
+def expected
+  Set.new([
+              'Eia do elab same.',
+              'Uati nua iaam caea.',
+              'Nulla paal dolor maatat.',
+              'Exerad iame ulpa ipari.',
+              'Veaat ea conaaectat noat.',
+              'Euaab voat doloa caecat.',
+              'Idatia naat paaat inia.',
+              'Prem fatiaa fad ulpaat.',
+              'Ea re deni utat.',
+              'Irud ming fat int.',
+              'Utaag quis aut ing.',
+              'Siaa miaation vagna alaa.',
+              'Ut dolla laat nonse.',
+              'Enaat alam nonse magnaat.',
+              'Sequaa nulp duisic na.',
+              'Seqa quips sitataa exae.',
+              'Vate eu adip quata.',
+              'Tatua ididun offia doaut.',
+          ])
+end
+def actual
+  Set.new([
+              'Euaab voat doloa caecat.',
+              'Suntat fugiame sici exad.',
+              'Idatia naat paaat inia.',
+              'Ea re deni utat.',
+              'Eia do elab same.',
+              'Nulla paal dolor maatat.',
+              'Dolo mod eaamet ena.',
+              'Exerad iame ulpa ipari.',
+              'Ut dolla laat nonse.',
+              'Sequaa nulp duisic na.',
+              'Dat dolor laboat caalit.',
+              'Seqa quips sitataa exae.',
+              'Dolo esera id samcomaa.',
+              'Irud ming fat int.',
+              'Siaa miaation vagna alaa.',
+              'Cuate adid do nim.',
+              'Tatua ididun offia doaut.',
+              'Ocaada iaamaa fatioa anaat.',
+          ])
+end
+```
+
+The default ```Minitest::Assertion``` message:
+
+```default.txt```:
+```diff
+--- expected
++++ actual
+@@ -1 +1 @@
+-#<Set: {"Eia do elab same.", "Uati nua iaam caea.", "Nulla paal dolor maatat.", "Exerad iame ulpa ipari.", "Veaat ea conaaectat noat.", "Euaab voat doloa caecat.", "Idatia naat paaat inia.", "Prem fatiaa fad ulpaat.", "Ea re deni utat.", "Irud ming fat int.", "Utaag quis aut ing.", "Siaa miaation vagna alaa.", "Ut dolla laat nonse.", "Enaat alam nonse magnaat.", "Sequaa nulp duisic na.", "Seqa quips sitataa exae.", "Vate eu adip quata.", "Tatua ididun offia doaut."}>
++#<Set: {"Euaab voat doloa caecat.", "Suntat fugiame sici exad.", "Idatia naat paaat inia.", "Ea re deni utat.", "Eia do elab same.", "Nulla paal dolor maatat.", "Dolo mod eaamet ena.", "Exerad iame ulpa ipari.", "Ut dolla laat nonse.", "Sequaa nulp duisic na.", "Dat dolor laboat caalit.", "Seqa quips sitataa exae.", "Dolo esera id samcomaa.", "Irud ming fat int.", "Siaa miaation vagna alaa.", "Cuate adid do nim.", "Tatua ididun offia doaut.", "Ocaada iaamaa fatioa anaat."}>
+```
+
+Message using ```make_my_diffs_pretty!```:
+
+```better.txt```:
+```diff
+--- expected
++++ actual
+@@ -1,18 +1,18 @@
+-#<Set: {"Eia do elab same.",
+- "Uati nua iaam caea.",
+- "Nulla paal dolor maatat.",
+- "Exerad iame ulpa ipari.",
+- "Veaat ea conaaectat noat.",
+- "Euaab voat doloa caecat.",
++#<Set: {"Euaab voat doloa caecat.",
++ "Suntat fugiame sici exad.",
+  "Idatia naat paaat inia.",
+- "Prem fatiaa fad ulpaat.",
+  "Ea re deni utat.",
+- "Irud ming fat int.",
+- "Utaag quis aut ing.",
+- "Siaa miaation vagna alaa.",
++ "Eia do elab same.",
++ "Nulla paal dolor maatat.",
++ "Dolo mod eaamet ena.",
++ "Exerad iame ulpa ipari.",
+  "Ut dolla laat nonse.",
+- "Enaat alam nonse magnaat.",
+  "Sequaa nulp duisic na.",
++ "Dat dolor laboat caalit.",
+  "Seqa quips sitataa exae.",
+- "Vate eu adip quata.",
+- "Tatua ididun offia doaut."}>
++ "Dolo esera id samcomaa.",
++ "Irud ming fat int.",
++ "Siaa miaation vagna alaa.",
++ "Cuate adid do nim.",
++ "Tatua ididun offia doaut.",
++ "Ocaada iaamaa fatioa anaat."}>
+```
+
+Elucidation using ```minitest-lucid```:
+
+* [Elucidation](elucidation.html)
+
+
+

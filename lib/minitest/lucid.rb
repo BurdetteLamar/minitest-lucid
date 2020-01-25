@@ -63,7 +63,7 @@ EOT
       Minitest::Assertions.elucidate_exception(exception)
       Minitest::Assertions.elucidate_backtrace(exception)
       home = ENV['HOME'].gsub(File::ALT_SEPARATOR, File::SEPARATOR)
-      dir_path = File.join(home, '.minitest_lucid')
+      dir_path = File.join(home, '.minitest-lucid')
       FileUtils.mkdir_p(dir_path)
       file_path = File.join(dir_path, test.name + '.html')
       file = File.open(file_path, 'w')
