@@ -187,7 +187,7 @@ Message using ```make_my_diffs_pretty!```:
 
 Elucidation using ```minitest-lucid```:
 
-* [Elucidation](elucidation.html)
+* [Elucidation](http://htmlpreview.github.io/?https://github.com/BurdetteLamar/minitest-lucid/blob/master/markdown/readme/set/assert_equal/elucidation.html)
 
 
 
