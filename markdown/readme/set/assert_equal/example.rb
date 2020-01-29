@@ -28,8 +28,6 @@ class Example < Minitest::Test
     rescue Minitest::Assertion => x
       file_path = File.read('lucid.txt').split(' ').last
       FileUtils.copy(file_path, './elucidation.html')
-      # puts file_path
-      # puts Dir.pwd
       File.open('lucid.txt', 'w') do |file|
         file.write(x.message)
       end
