@@ -50,6 +50,7 @@ EOT
       doc = REXML::Document.new
       html_ele = doc.add_element('html')
       head_ele = html_ele.add_element('head')
+      head_ele.attributes['title'] = 'Elucidation'
       style_ele = head_ele.add_element('style')
       style_ele.text = STYLES
       @body_ele = html_ele.add_element('body')
