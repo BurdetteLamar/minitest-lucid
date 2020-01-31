@@ -6,14 +6,12 @@ Here are sets, expected and actual, to be compared.
 
 The default ```Minitest::Assertion``` message:
 
-@[diff](default.txt)
+@[text](default.txt)
 
 Message using ```make_my_diffs_pretty!```:
 
-@[diff](better.txt)
+@[text](better.txt)
 
 Elucidation using ```minitest-lucid```:
-
-* <a href="http://htmlpreview.github.io/?https://github.com/BurdetteLamar/minitest-lucid/blob/master/markdown/readme/set/assert_equal/elucidation.html" target="foo">Elucidation</a>
 
 * [Elucidation](http://htmlpreview.github.io/?https://github.com/BurdetteLamar/minitest-lucid/blob/master/markdown/readme/set/assert_equal/elucidation.html)

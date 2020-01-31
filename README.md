@@ -104,7 +104,7 @@ end
 The default ```Minitest::Assertion``` message:
 
 ```default.txt```:
-```diff
+```text
 --- expected
 +++ actual
 @@ -1 +1 @@
@@ -115,7 +115,7 @@ The default ```Minitest::Assertion``` message:
 Message using ```make_my_diffs_pretty!```:
 
 ```better.txt```:
-```diff
+```text
 --- expected
 +++ actual
 @@ -1,18 +1,18 @@
@@ -153,8 +153,6 @@ Message using ```make_my_diffs_pretty!```:
 ```
 
 Elucidation using ```minitest-lucid```:
-
-* <a href="http://htmlpreview.github.io/?https://github.com/BurdetteLamar/minitest-lucid/blob/master/markdown/readme/set/assert_equal/elucidation.html" target="foo">Elucidation</a>
 
 * [Elucidation](http://htmlpreview.github.io/?https://github.com/BurdetteLamar/minitest-lucid/blob/master/markdown/readme/set/assert_equal/elucidation.html)
 
