@@ -1,7 +1,6 @@
 $LOAD_PATH.unshift File.expand_path("../lib", __dir__)
-require "minitest/lucid"
 
-require "minitest/autorun"
+require "minitest/lucid"
 
 require_relative '../lib/minitest/lucid'
 
