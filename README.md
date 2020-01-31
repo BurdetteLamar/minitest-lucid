@@ -18,7 +18,7 @@ Because when you have a failed assertion:
 
 * How much information is enough?
 * More is better.
-* Too much is just about right!
+* Too much is just about right.
 
 ## Usage
 
@@ -41,7 +41,7 @@ The supported classes:
 
 - [Set](#set)
 
-The examples below show:
+Each example below shows:
 
 - The message from a normal failed assertion.
 - The message as modified by the use of ```make_my_diffs_pretty!``` (which is part of ```minitest``` itself).
@@ -153,6 +153,8 @@ Message using ```make_my_diffs_pretty!```:
 ```
 
 Elucidation using ```minitest-lucid```:
+
+* <a href="http://htmlpreview.github.io/?https://github.com/BurdetteLamar/minitest-lucid/blob/master/markdown/readme/set/assert_equal/elucidation.html" target="foo">Elucidation</a>
 
 * [Elucidation](http://htmlpreview.github.io/?https://github.com/BurdetteLamar/minitest-lucid/blob/master/markdown/readme/set/assert_equal/elucidation.html)
 

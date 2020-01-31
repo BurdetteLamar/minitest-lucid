@@ -14,4 +14,6 @@ Message using ```make_my_diffs_pretty!```:
 
 Elucidation using ```minitest-lucid```:
 
+* <a href="http://htmlpreview.github.io/?https://github.com/BurdetteLamar/minitest-lucid/blob/master/markdown/readme/set/assert_equal/elucidation.html" target="foo">Elucidation</a>
+
 * [Elucidation](http://htmlpreview.github.io/?https://github.com/BurdetteLamar/minitest-lucid/blob/master/markdown/readme/set/assert_equal/elucidation.html)

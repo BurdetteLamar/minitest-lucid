@@ -18,7 +18,7 @@ Because when you have a failed assertion:
 
 * How much information is enough?
 * More is better.
-* Too much is just about right!
+* Too much is just about right.
 
 ## Usage
 
@@ -41,7 +41,7 @@ The supported classes:
 
 - [Set](#set)
 
-The examples below show:
+Each example below shows:
 
 - The message from a normal failed assertion.
 - The message as modified by the use of ```make_my_diffs_pretty!``` (which is part of ```minitest``` itself).
